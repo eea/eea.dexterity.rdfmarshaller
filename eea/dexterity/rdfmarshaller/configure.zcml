@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <include file="profiles.zcml" />
+  <include file="patches.zcml" />
+
+  <include package=".actions" />
+  <include package=".asyncode" />
+  <include package=".browser" />
+  <include package=".licenses" />
+  <include package=".generic" />
+  <include package=".linkeddata" />
+  <include package=".upgrades" />
+
+  <include zcml:condition="installed plone.dexterity" package=".dexterity" />
+
+  <class class="surf.Session">
+     <implements interface=".interfaces.ISurfSession" />
+  </class>
+
+  <adapter factory=".marshaller.PortalTypesUtil2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".marshaller.PloneSite2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+
+  <adapter factory=".value.DateTime2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.List2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.Set2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.String2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.Tuple2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.URIRef2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".value.Value2Surf"
+    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+
+</configure>
