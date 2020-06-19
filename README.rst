@@ -1,11 +1,11 @@
+================d=
+EEA Dexterity RDF Marshaller
 ==================
-EEA RDF Marshaller
-==================
-.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.rdfmarshaller/develop
-  :target: https://ci.eionet.europa.eu/job/eea/job/eea.rdfmarshaller/job/develop/display/redirect
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.dexterity.rdfmarshaller/develop
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.dexterity.rdfmarshaller/job/develop/display/redirect
   :alt: develop
-.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.rdfmarshaller/master
-  :target: https://ci.eionet.europa.eu/job/eea/job/eea.rdfmarshaller/job/master/display/redirect
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.dexterity.rdfmarshaller/master
+  :target: https://ci.eionet.europa.eu/job/eea/job/eea.dexterity.rdfmarshaller/job/master/display/redirect
   :alt: master
 
 Export any Dexterity content to RDF.
@@ -21,15 +21,15 @@ Contents
 Install
 =======
 
-- Add eea.rdfmarshaller to your eggs section in your buildout and re-run buildout.
+- Add eea.dexterity.rdfmarshaller to your eggs section in your buildout and re-run buildout.
   You can download a sample buildout from
-  https://github.com/eea/eea.rdfmarshaller/tree/master/buildouts/plone4
-- Install *EEA RDF Marshaller* within Site Setup > Add-ons
+  https://github.com/eea/eea.dexterity.rdfmarshaller/tree/master/buildouts/plone5
+- Install *EEA Dexterity RDF Marshaller* within Site Setup > Add-ons
 
 Getting started
 ===============
 
-See `marshaller.txt <https://github.com/eea/eea.rdfmarshaller/blob/master/eea/rdfmarshaller/marshall.txt>`_
+See `marshaller.txt <https://github.com/eea/eea.dexterity.rdfmarshaller/blob/master/eea/dexterity/rdfmarshaller/marshall.txt>`_
 
 Updating Semantic Content-Registry
 ==================================
@@ -55,8 +55,8 @@ Internally via zc.async
 Source code
 ===========
 
-- Latest source code (Plone 4 compatible):
-  https://github.com/eea/eea.rdfmarshaller
+- Latest source code (Plone 5.2 compatible):
+  https://github.com/eea/eea.dexterity.rdfmarshaller
 
 
 Copyright and license
