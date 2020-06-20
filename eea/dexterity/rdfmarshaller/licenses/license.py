@@ -77,8 +77,8 @@ class IPortalTypeLicenses(Interface):
             vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes"),
         value_type=schema.Choice(
             title=u"License",
-            vocabulary="eea.rdfmarshaller.licenses")
-        )
+            vocabulary="eea.dexterity.rdfmarshaller.licenses")
+    )
 
 
 class PortalTypeLicensesEditForm(RegistryEditForm):
@@ -104,7 +104,7 @@ class LicensesVocabulary(object):
             items = [
                 SimpleTerm(str(y), str(y), str(y)) for y in [
                     x.get('id') for x in licenses]
-                ]
+            ]
         except Exception:
             items = [SimpleTerm(' ', ' ', ' ')]
 

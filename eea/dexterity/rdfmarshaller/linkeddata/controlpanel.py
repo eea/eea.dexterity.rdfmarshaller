@@ -1,13 +1,13 @@
 """ ControlPanel module
 """
-from eea.rdfmarshaller.interfaces import ILinkedDataHomepage
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedDataHomepage
 from plone import api
 from plone.autoform import directives
 from plone.formwidget.contenttree import PathSourceBinder
 from plone.formwidget.contenttree.widget import MultiContentTreeWidget
 from plone.z3cform import layout
-from z3c.form.form import Form
 from plone.supermodel import model
+from z3c.form.form import Form
 from z3c.form import button, widget
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget as SCBFW
 from z3c.form.interfaces import IFieldWidget
@@ -117,7 +117,7 @@ class EditLinkedDataHomepagesForm(Form):
         set_site = data['set_plonesite']
 
         if set_site != already_set:
-            action = set_site and alsoProvides or noLongerProvides
+            action = alsoProvides if set_site else noLongerProvides
             action(site, ILinkedDataHomepage)
             site._p_changed = True
             site.reindexObject(idxs=['object_provides'])

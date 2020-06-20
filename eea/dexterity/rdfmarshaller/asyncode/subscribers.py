@@ -3,7 +3,7 @@
 import os
 import logging
 from plone.app.async.subscribers import set_quota
-logger = logging.getLogger('eea.rdfmarshaller')
+logger = logging.getLogger('eea.dexterity.rdfmarshaller')
 
 
 def getMaximumThreads(queue):

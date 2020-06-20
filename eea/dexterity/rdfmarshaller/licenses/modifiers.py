@@ -1,9 +1,11 @@
 """ Modifiers
 """
+# pylint: disable=too-many-locals
 import rdflib
 import surf
-from eea.rdfmarshaller.interfaces import ISurfResourceModifier
-from eea.rdfmarshaller.licenses.license import ILicenses, IPortalTypeLicenses
+from eea.dexterity.rdfmarshaller.interfaces import ISurfResourceModifier
+from eea.dexterity.rdfmarshaller.licenses.license import ILicenses
+from eea.dexterity.rdfmarshaller.licenses.license import IPortalTypeLicenses
 from plone import api
 from Products.CMFCore.interfaces import IContentish
 from zope.component import adapts
@@ -43,7 +45,7 @@ class ContentLicenseModifier(object):
         license_id = reg_types[self.context.portal_type]
         licenses = [x for x in reg_licenses if x['id'] == license_id]
 
-        if len(licenses) == 0:
+        if not licenses:
             return None  # No license details for this license id
 
         RightsStatement = resource.session.get_class(

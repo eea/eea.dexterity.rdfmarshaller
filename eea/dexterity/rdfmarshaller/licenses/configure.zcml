@@ -5,7 +5,7 @@
   i18n_domain="example.dexterityforms">
 
   <subscriber factory=".modifiers.ContentLicenseModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <browser:page
     name="licenses-settings"
@@ -23,6 +23,6 @@
 
   <utility
     component=".license.LicensesVocabularyFactory"
-    name="eea.rdfmarshaller.licenses" />
+    name="eea.dexterity.rdfmarshaller.licenses" />
 
 </configure>

@@ -9,14 +9,14 @@ from Products.Five import fiveconfigure
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 from Zope2.App.zcml import load_config
-import eea.rdfmarshaller
+import eea.dexterity.rdfmarshaller
 import eea.depiction
 
 PloneTestCase.installProduct('ATVocabularyManager')
 PloneTestCase.installProduct('eea.depiction')
 
 PRODUCTS = ['ATVocabularyManager', 'eea.depiction']
-PROFILES = ['eea.rdfmarshaller:default']
+PROFILES = ['eea.dexterity.rdfmarshaller:default']
 
 
 @onsetup
@@ -24,8 +24,8 @@ def setup_rdfmarshaller():
     """ Setup """
 
     fiveconfigure.debug_mode = True
-    load_config('configure.zcml', eea.rdfmarshaller)
-    load_config('testing.zcml', eea.rdfmarshaller)
+    load_config('configure.zcml', eea.dexterity.rdfmarshaller)
+    load_config('testing.zcml', eea.dexterity.rdfmarshaller)
 
     fiveconfigure.debug_mode = False
 
@@ -41,8 +41,8 @@ def setup_depiction():
 setup_rdfmarshaller()
 setup_depiction()
 PloneTestCase.setupPloneSite(
-        products=PRODUCTS,
-        extension_profiles=['eea.rdfmarshaller:testfixture'])
+    products=PRODUCTS,
+    extension_profiles=['eea.dexterity.rdfmarshaller:testfixture'])
 
 
 class FunctionalTestCase(PloneTestCase.FunctionalTestCase):
@@ -64,15 +64,15 @@ class FunctionalTestCase(PloneTestCase.FunctionalTestCase):
         if atvm is None:
             return
         vocabs = {
-            'eea.rdfmarshaller.vocab.testing': (
-              (u'air pollution', "Air pollution"),
-              (u'climate change', "Climate change mitigation"),
-              (u'biodiversity', "Nature protection and biodiversity"),
-              (u'land', "Land use"),
-              (u'freshwater', "Freshwater"),
-              (u'waste', "Waste"),
-             ),
-            }
+            'eea.dexterity.rdfmarshaller.vocab.testing': (
+                (u'air pollution', "Air pollution"),
+                (u'climate change', "Climate change mitigation"),
+                (u'biodiversity', "Nature protection and biodiversity"),
+                (u'land', "Land use"),
+                (u'freshwater', "Freshwater"),
+                (u'waste', "Waste"),
+            ),
+        }
 
         # wftool = portal.portal_workflow
         for vkey in vocabs:

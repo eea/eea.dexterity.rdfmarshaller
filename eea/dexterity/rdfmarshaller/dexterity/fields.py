@@ -5,11 +5,13 @@ import sys
 import rdflib
 import surf
 from Acquisition import aq_base
-from eea.rdfmarshaller.dexterity.interfaces import IDXField2Surf
-from eea.rdfmarshaller.generic.fields import BaseShortenHTMLField2Surf
-from eea.rdfmarshaller.interfaces import IFieldDefinition2Surf, ISurfSession
-from eea.rdfmarshaller.marshaller import GenericObject2Surf
-from eea.rdfmarshaller.value import Value2Surf
+from eea.dexterity.rdfmarshaller.dexterity.interfaces import IDXField2Surf
+from eea.dexterity.rdfmarshaller.generic.fields import \
+    BaseShortenHTMLField2Surf
+from eea.dexterity.rdfmarshaller.interfaces import IFieldDefinition2Surf
+from eea.dexterity.rdfmarshaller.interfaces import ISurfSession
+from eea.dexterity.rdfmarshaller.marshaller import GenericObject2Surf
+from eea.dexterity.rdfmarshaller.value import Value2Surf
 from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone import log
 from zope.component import adapts
@@ -135,7 +137,6 @@ class ShortenHTMLField2Surf(DXField2Surf, BaseShortenHTMLField2Surf):
         factory=".FallbackDescription"
         />
     """
-
 
     exportable = True
     alternate_field = None

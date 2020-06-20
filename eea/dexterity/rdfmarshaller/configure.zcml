@@ -21,32 +21,32 @@
   </class>
 
   <adapter factory=".marshaller.PortalTypesUtil2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".marshaller.PloneSite2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
 
   <adapter factory=".value.DateTime2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.List2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.Set2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.String2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.Tuple2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.URIRef2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
   <adapter factory=".value.Value2Surf"
-    provides="eea.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
 
 </configure>

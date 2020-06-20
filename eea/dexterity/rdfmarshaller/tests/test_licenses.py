@@ -2,8 +2,9 @@
 
 import unittest
 
-from eea.rdfmarshaller.licenses.license import ILicenses, IPortalTypeLicenses
-from eea.rdfmarshaller.testing import INTEGRATION_TESTING
+from eea.dexterity.rdfmarshaller.licenses.license import ILicenses
+from eea.dexterity.rdfmarshaller.licenses.license import IPortalTypeLicenses
+from eea.dexterity.rdfmarshaller.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import TEST_USER_ID, setRoles
 from plone.app.upgrade.utils import loadMigrationProfile
@@ -24,7 +25,8 @@ class TestProgramIntegration(unittest.TestCase):
         self.page = self.portal['test-page']
         self.page.edit(title="Test title", description="Test description")
 
-        loadMigrationProfile(self.portal, 'profile-eea.rdfmarshaller:default')
+        loadMigrationProfile(self.portal,
+                             'profile-eea.dexterity.rdfmarshaller:default')
 
     def test_licenses(self):
         """ test licenses """

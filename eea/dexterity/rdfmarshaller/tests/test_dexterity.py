@@ -4,7 +4,7 @@ import unittest
 
 import lxml.etree
 
-from eea.rdfmarshaller.testing import INTEGRATION_TESTING
+from eea.dexterity.rdfmarshaller.testing import INTEGRATION_TESTING
 from plone.app.testing import TEST_USER_ID, setRoles
 from plone.app.textfield.value import RichTextValue
 from zope.component import getMultiAdapter
@@ -79,8 +79,10 @@ class TestProgramIntegration(unittest.TestCase):
     def test_shorten_description(self):
         """ Test shorten description field """
 
-        from eea.rdfmarshaller.dexterity.fields import ShortenHTMLField2Surf
-        from eea.rdfmarshaller.dexterity.interfaces import IDXField2Surf
+        from eea.dexterity.rdfmarshaller.dexterity.fields import \
+            ShortenHTMLField2Surf
+        from eea.dexterity.rdfmarshaller.dexterity.interfaces import \
+            IDXField2Surf
         from zope.component import getGlobalSiteManager
         from zope.interface import Interface
 

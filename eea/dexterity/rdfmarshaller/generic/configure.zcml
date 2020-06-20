@@ -4,7 +4,7 @@
   xmlns:browser="http://namespaces.zope.org/browser">
 
   <subscriber factory=".modifiers.FolderPartsModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <!-- <adapter factory=".GenericPublisherOrganisation" /> -->
 

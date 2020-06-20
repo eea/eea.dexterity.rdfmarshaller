@@ -8,10 +8,11 @@ from zope.component import (adapts, getMultiAdapter, getUtility, queryAdapter,
 from zope.schema import getFieldsInOrder
 
 import surf
-from eea.rdfmarshaller.dexterity.interfaces import IDXField2Surf
-from eea.rdfmarshaller.interfaces import (IFieldDefinition2Surf, ISurfSession,
-                                          IValue2Surf)
-from eea.rdfmarshaller.marshaller import GenericObject2Surf
+from eea.dexterity.rdfmarshaller.dexterity.interfaces import IDXField2Surf
+from eea.dexterity.rdfmarshaller.interfaces import (IFieldDefinition2Surf,
+                                                    ISurfSession,
+                                                    IValue2Surf)
+from eea.dexterity.rdfmarshaller.marshaller import GenericObject2Surf
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.behavior.interfaces import IBehavior
 from plone.dexterity.interfaces import IDexterityContent, IDexterityFTI

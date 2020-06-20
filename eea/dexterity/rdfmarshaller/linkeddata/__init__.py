@@ -1,10 +1,13 @@
 """ LinkedData module
 """
+# pylint: disable=too-many-locals
 from __future__ import print_function
 import rdflib
 import surf
-from eea.rdfmarshaller.interfaces import ILinkedData, ILinkedDataHomepage
-from eea.rdfmarshaller.linkeddata.interfaces import ILinkedDataHomepageData
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedData
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedDataHomepage
+from eea.dexterity.rdfmarshaller.linkeddata.interfaces import \
+    ILinkedDataHomepageData
 from persistent import Persistent
 from plone.api import portal
 from Products.CMFCore.interfaces import IContentish
@@ -25,7 +28,7 @@ def schematize(store):
            if (
                v.startswith('http://schema.org') or
                p.startswith('http://schema.org')
-           )]
+    )]
     s = surf.Store(reader='rdflib', writer='rdflib', rdflib_store='IOMemory')
 
     for triple in res:
@@ -102,11 +105,11 @@ class GenericLinkedData(object):
         article.schema_headline = headline
 
         published = resource.dcterms_issued.first
-        published = published and published or resource.dcterms_created.first
+        published = published if published else resource.dcterms_created.first
         article.schema_datePublished = str(published)
 
         modified = resource.dcterms_modified.first
-        modified = modified and modified or published
+        modified = modified if modified else published
         article.schema_dateModified = str(modified)
 
         name = resource.dcterms_creator.first

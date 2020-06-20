@@ -6,17 +6,16 @@ from zope.component import adapts
 from zope.interface import implementer, providedBy
 
 import rdflib
-from eea.rdfmarshaller.interfaces import ISurfResourceModifier
 from plone.dexterity.interfaces import IDexterityContent
-from Products.CMFCore.WorkflowCore import WorkflowException
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import log
-
 try:
     from plone.app.multilingual.interfaces import ITranslationManager
     has_plone_multilingual = True
 except ImportError:
     has_plone_multilingual = False
+from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import log
+from eea.dexterity.rdfmarshaller.interfaces import ISurfResourceModifier
 
 
 ILLEGAL_XML_CHARS_PATTERN = re.compile(
@@ -122,7 +121,7 @@ class TranslationInfoModifier(object):
 
             if translations:
                 translations_objs = filter(None, [tm.get_translation(o)
-                                      for o in translations])
+                                           for o in translations])
                 resource.eea_hasTranslation = \
                     [rdflib.URIRef(o.absolute_url()) for o in translations_objs
                      if o.absolute_url() != context.absolute_url()]

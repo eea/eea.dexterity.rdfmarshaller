@@ -2,14 +2,6 @@
 
 import sys
 
-from zope.component import adapts
-from zope.interface import implementer
-
-from eea.rdfmarshaller.dexterity.modifiers import BaseFileModifier
-from eea.rdfmarshaller.interfaces import ISurfResourceModifier
-from plone.app.contenttypes.interfaces import IFile, IImage
-from Products.CMFPlone import log
-
 try:
     from collective.cover.interfaces import ICover
 except ImportError:
@@ -18,6 +10,14 @@ except ImportError:
     class ICover(Interface):
         """ Dummy replacement interface
         """
+
+from zope.component import adapts
+from zope.interface import implementer
+
+from eea.dexterity.rdfmarshaller.dexterity.modifiers import BaseFileModifier
+from eea.dexterity.rdfmarshaller.interfaces import ISurfResourceModifier
+from plone.app.contenttypes.interfaces import IFile, IImage
+from Products.CMFPlone import log
 
 
 @implementer(ISurfResourceModifier)

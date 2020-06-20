@@ -5,18 +5,18 @@
 
   <genericsetup:registerProfile
     name="testfixture"
-    title="eea.rdfmarshaller test fixture"
+    title="eea.dexterity.rdfmarshaller test fixture"
     directory="profiles/testfixture"
-    description="Test fixture profile with eea.rdfmarshaller"
+    description="Test fixture profile with eea.dexterity.rdfmarshaller"
     provides="Products.GenericSetup.interfaces.EXTENSION"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     />
 
   <genericsetup:registerProfile
     name="dexterity_testfixture"
-    title="eea.rdfmarshaller dexterity test fixture"
+    title="eea.dexterity.rdfmarshaller dexterity test fixture"
     directory="profiles/dexterity_testfixture"
-    description="Test fixture profile with eea.rdfmarshaller"
+    description="Test fixture profile with eea.dexterity.rdfmarshaller"
     provides="Products.GenericSetup.interfaces.EXTENSION"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     />

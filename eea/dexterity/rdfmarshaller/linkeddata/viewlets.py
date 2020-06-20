@@ -1,18 +1,17 @@
 """ Viewlets Module
 """
 import logging
-from eea.rdfmarshaller.interfaces import ILinkedData
-from plone.app.layout.viewlets import ViewletBase
-from eea.rdfmarshaller.products_marshall_registry import getComponent
 from zope.component import getMultiAdapter
-
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedData
+from eea.dexterity.rdfmarshaller.products_marshall_registry import getComponent
 try:
     from eea.cache import cache
 except ImportError:
     from plone.memoize.ram import cache
+from plone.app.layout.viewlets import ViewletBase
 
 
-logger = logging.getLogger('eea.rdfmarshaller')
+logger = logging.getLogger('eea.dexterity.rdfmarshaller')
 
 
 def get_key(function, viewlet):

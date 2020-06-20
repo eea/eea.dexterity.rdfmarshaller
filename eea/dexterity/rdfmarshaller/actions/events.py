@@ -1,7 +1,10 @@
 """ Custom ObjectMovedOrRenamedEvent"""
-from eea.rdfmarshaller.actions.interfaces import IObjectMovedOrRenamedEvent
+# pylint: disable=too-many-arguments
+from eea.dexterity.rdfmarshaller.actions.interfaces import \
+    IObjectMovedOrRenamedEvent
 from zope.component.interfaces import ObjectEvent
 from zope.interface import implementer
+
 
 @implementer(IObjectMovedOrRenamedEvent)
 class ObjectMovedOrRenamedEvent(ObjectEvent):

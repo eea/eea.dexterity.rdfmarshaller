@@ -1,13 +1,13 @@
 """ Surf conversion classes """
 
 import re
+from chardet import detect
 from DateTime.DateTime import DateTime
 from Products.CMFPlone import log
-from chardet import detect
-from eea.rdfmarshaller.interfaces import IValue2Surf
 from rdflib import URIRef
 from zope.component import adapts
 from zope.interface import implementer, Interface
+from eea.dexterity.rdfmarshaller.interfaces import IValue2Surf
 
 
 @implementer(IValue2Surf)

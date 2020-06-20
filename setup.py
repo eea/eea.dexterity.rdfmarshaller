@@ -31,7 +31,7 @@ setup(name=name,
       url='https://github.com/eea/eea.dexterity.rdfmarshaller',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['eea'],
+      namespace_packages=['eea', 'eea.dexterity'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[

@@ -2,7 +2,7 @@
 """
 import doctest
 import unittest
-from eea.rdfmarshaller.tests.base import FunctionalTestCase
+from eea.dexterity.rdfmarshaller.tests.base import FunctionalTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 
 
@@ -18,7 +18,7 @@ def test_suite():
         FunctionalDocFileSuite(
             'marshall.txt',
             optionflags=OPTIONFLAGS,
-            package='eea.rdfmarshaller',
+            package='eea.dexterity.rdfmarshaller',
             test_class=FunctionalTestCase),
     ))
 

@@ -2,7 +2,7 @@
 """
 from collective.z3cform.datagridfield import BlockDataGridFieldFactory
 
-from eea.rdfmarshaller.linkeddata import ILinkedDataHomepageData
+from eea.dexterity.rdfmarshaller.linkeddata import ILinkedDataHomepageData
 from plone.z3cform import layout
 from z3c.form import field, form
 

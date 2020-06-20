@@ -17,7 +17,7 @@
   <browser:page
     name="edit-linkeddata-homepage"
     permission="cmf.ManagePortal"
-    for="eea.rdfmarshaller.interfaces.ILinkedDataHomepage"
+    for="eea.dexterity.rdfmarshaller.interfaces.ILinkedDataHomepage"
     class=".views.EditLinkedDataHomepageView"
     />
 
@@ -32,22 +32,22 @@
   <adapter factory=".linked_data_annotation" />
 
   <subscriber factory=".modifiers.HomepageModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.BreadcrumbModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.CarouselModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.OrganizationModifier"
-    for="eea.rdfmarshaller.interfaces.ILinkedDataHomepage"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    for="eea.dexterity.rdfmarshaller.interfaces.ILinkedDataHomepage"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.OrganizationModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.DefaultPageModifier"
-    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier" />
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
 </configure>

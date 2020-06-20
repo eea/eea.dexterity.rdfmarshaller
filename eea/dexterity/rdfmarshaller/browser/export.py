@@ -2,8 +2,8 @@
 """
 import os
 import logging
-from eea.rdfmarshaller.interfaces import ILinkedData
-from eea.rdfmarshaller.products_marshall_registry import getComponent
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedData
+from eea.dexterity.rdfmarshaller.products_marshall_registry import getComponent
 from unidecode import unidecode
 
 
@@ -12,7 +12,8 @@ try:
 except Exception:
     LIMIT = 65535   # Refs #83543 - Default: 0xFFFF, 2^16, 16-bit
 
-logger = logging.getLogger('eea.rdfmarshaller')
+logger = logging.getLogger('eea.dexterity.rdfmarshaller')
+
 
 class RDFExport(object):
     """ RDF Export """

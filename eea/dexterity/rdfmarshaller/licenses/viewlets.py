@@ -3,11 +3,12 @@
 import StringIO
 
 import surf
-from eea.rdfmarshaller.licenses.license import ILicenses, IPortalTypeLicenses
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.memoize.ram import cache
-from eea.rdfmarshaller.products_marshall_registry import getComponent
+from eea.dexterity.rdfmarshaller.licenses.license import ILicenses
+from eea.dexterity.rdfmarshaller.licenses.license import IPortalTypeLicenses
+from eea.dexterity.rdfmarshaller.products_marshall_registry import getComponent
 
 from rdflib import ConjunctiveGraph  # , Graph
 

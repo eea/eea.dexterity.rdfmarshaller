@@ -1,9 +1,11 @@
 """ Modifiers module
 """
+# pylint: disable=too-many-locals
 import surf
-from eea.rdfmarshaller.interfaces import (ILinkedDataHomepage,
-                                          ISurfResourceModifier)
-from eea.rdfmarshaller.linkeddata.interfaces import ILinkedDataHomepageData
+from eea.dexterity.rdfmarshaller.interfaces import (ILinkedDataHomepage,
+                                                    ISurfResourceModifier)
+from eea.dexterity.rdfmarshaller.linkeddata.interfaces import \
+    ILinkedDataHomepageData
 from Products.CMFCore.interfaces import IContentish
 from rdflib.term import Literal
 from zope.component import adapts, queryMultiAdapter
@@ -29,8 +31,8 @@ class CarouselModifier(object):
             return
         b_size = request.get('limit_display', 100)
         qry = queryMultiAdapter((context, request), name='faceted_query')
-        brains = qry.query() if qry else self.context.queryCatalog(batch=True,
-                                                           b_size=b_size)
+        brains = qry.query() if qry else self.context.queryCatalog(
+            batch=True, b_size=b_size)
         if not brains:
             return
         ItemList = session.get_class(surf.ns.SCHEMA['ItemList'])
@@ -263,7 +265,7 @@ class DefaultPageModifier(object):
         """
 
         view = queryMultiAdapter((self.context, self.context.REQUEST),
-                               name="plone_context_state")
+                                 name="plone_context_state")
 
         if view.is_view_template():
             root = view.canonical_object()

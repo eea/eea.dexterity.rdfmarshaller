@@ -1,9 +1,9 @@
 """ Test linked data feature """
 
 import unittest
-from eea.rdfmarshaller.interfaces import ILinkedDataHomepage
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedDataHomepage
 
-from eea.rdfmarshaller.testing import INTEGRATION_TESTING
+from eea.dexterity.rdfmarshaller.testing import INTEGRATION_TESTING
 from zope.interface import alsoProvides
 
 from plone.app.testing import TEST_USER_ID, setRoles
@@ -29,7 +29,8 @@ class TestLinkedDataIntegration(unittest.TestCase):
         # Cheat condition @@plone_context_state/is_view_template
         self.page.REQUEST['ACTUAL_URL'] = self.page.absolute_url()
 
-        loadMigrationProfile(self.portal, 'profile-eea.rdfmarshaller:default')
+        loadMigrationProfile(self.portal,
+                             'profile-eea.dexterity.rdfmarshaller:default')
 
     def test_linkeddata_viewlet(self):
         """ test linkeddata modifiers """
@@ -37,8 +38,10 @@ class TestLinkedDataIntegration(unittest.TestCase):
         # TEST linkeddata viewlet rendering
 
         page = self.portal['test-page']()
-        assert """<script data-diazo-keep='true' type="application/ld+json">"""\
-               in page
+        assert (
+            """<script data-diazo-keep='true' type="application/ld+json">"""
+            in page
+        )
 
     def test_linkeddata_breadcrumb(self):
         """ Markup render for breadcrumb

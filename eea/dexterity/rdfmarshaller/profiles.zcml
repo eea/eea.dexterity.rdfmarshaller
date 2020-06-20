@@ -19,10 +19,10 @@
       />
 
   <genericsetup:importStep
-      name="eea.rdfmarshaller.various"
+      name="eea.dexterity.rdfmarshaller.various"
       title="EEA RDF Marshaller setup"
       description="EEA RDF Marshaller installation step."
-      handler="eea.rdfmarshaller.setuphandlers.setupVarious">
+      handler="eea.dexterity.rdfmarshaller.setuphandlers.setupVarious">
       <depends name="actions" />
   </genericsetup:importStep>
 

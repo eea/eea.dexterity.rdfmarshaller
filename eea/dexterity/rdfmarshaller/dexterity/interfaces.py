@@ -1,6 +1,6 @@
 """ rdfmarshaller interfaces """
 
-from eea.rdfmarshaller.interfaces import IField2Surf
+from eea.dexterity.rdfmarshaller.interfaces import IField2Surf
 
 
 class IDXField2Surf(IField2Surf):

@@ -6,9 +6,11 @@ from surf.log import set_logger
 from Products.CMFCore.interfaces._tools import ITypesTool
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
-from eea.rdfmarshaller.interfaces import (IGenericObject2Surf, IObject2Surf,
-                                          ISurfResourceModifier, ISurfSession)
-from eea.rdfmarshaller.products_marshall import Marshaller
+from eea.dexterity.rdfmarshaller.interfaces import (IGenericObject2Surf,
+                                                    IObject2Surf,
+                                                    ISurfResourceModifier,
+                                                    ISurfSession)
+from eea.dexterity.rdfmarshaller.products_marshall import Marshaller
 from zope.component import adapts, queryMultiAdapter, subscribers
 from zope.interface import Interface, implementer
 
@@ -23,7 +25,7 @@ surf.ns.register(ODRS="http://schema.theodi.org/odrs#")
 surf.ns.register(RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 surf.ns.register(RDFS="http://www.w3.org/2000/01/rdf-schema#")
 
-logger = logging.getLogger('eea.rdfmarshaller')
+logger = logging.getLogger('eea.dexterity.rdfmarshaller')
 logger.setLevel(level=logging.CRITICAL)
 set_logger(logger)
 

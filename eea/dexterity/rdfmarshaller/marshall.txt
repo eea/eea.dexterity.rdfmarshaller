@@ -34,7 +34,7 @@ Add an Image so we can test marshalling binary objects.
   >>> pdff.setFile('svenska tecken öäå')
   >>> folder.setRights('copyright by me!!!')
 
-  >>> from eea.rdfmarshaller.products_marshall_registry import getComponent
+  >>> from eea.dexterity.rdfmarshaller.products_marshall_registry import getComponent
   >>> marshaller = getComponent('surfrdf')
   >>> import surf
   >>> surf.ns.register(NEWSITEM='%s#' % self.portal.portal_types['News Item'].absolute_url())
@@ -53,7 +53,7 @@ Lets verify our RDF export
   >>> session = surf.Session(store)
 
 
-  >>> from eea.rdfmarshaller.interfaces import IObject2Surf
+  >>> from eea.dexterity.rdfmarshaller.interfaces import IObject2Surf
   >>> from zope.component import getMultiAdapter
   >>> adapter = getMultiAdapter((folder, session), interface=IObject2Surf)
 
@@ -85,13 +85,13 @@ Exporting a vocabulary
   >>> surf.ns.register(SIMPLEVOCABULARY='%s#' % self.portal.portal_types['SimpleVocabulary'].absolute_url())
   >>> surf.ns.register(SIMPLEVOCABULARYTERM='%s#' % self.portal.portal_types['SimpleVocabularyTerm'].absolute_url())
   >>> self.setupVocabularies()
-  >>> vocab = self.portal.portal_vocabularies['eea.rdfmarshaller.vocab.testing']
+  >>> vocab = self.portal.portal_vocabularies['eea.dexterity.rdfmarshaller.vocab.testing']
   >>> content_type, length, data = marshaller.marshall(vocab)
   >>> store.load_triples(source=StringIO(data))
   True
   >>> SimpleVocabulary = session.get_class(surf.ns.SIMPLEVOCABULARY['SimpleVocabulary'])
   >>> [obj.simplevocabulary_id.first.strip() for obj in SimpleVocabulary.all()]
-  [u'eea.rdfmarshaller.vocab.testing']
+  [u'eea.dexterity.rdfmarshaller.vocab.testing']
 
 Load all the vocabolary terms into store
 

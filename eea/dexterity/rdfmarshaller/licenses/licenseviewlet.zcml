@@ -2,7 +2,7 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
   xmlns:plone="http://namespaces.plone.org/plone"
-  i18n_domain="eea_rdfmarshaller">
+  i18n_domain="eea.dexterity.rdfmarshaller">
 
   <!--
   Load this file in your website if you need it. We don't enable this by
@@ -11,7 +11,7 @@
   -->
 
   <browser:viewlet
-    name="eea.rdfmarshaller.license"
+    name="eea.dexterity.rdfmarshaller.license"
     manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
     class=".viewlets.LicenseViewlet"
     permission="zope2.View"

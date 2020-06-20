@@ -1,20 +1,21 @@
 """ RDF Marshaller ping action
 """
+# pylint: disable=too-many-branches,too-many-locals
 import logging
-import pytz
 import urllib
-import lxml.etree
-try:
-    from eventlet.green import urllib2
-except ImportError:
-    from eventlet.green.urllib import request as urllib2
 from datetime import datetime, timedelta
+import lxml.etree
 from zope import schema
 from zope.interface import implementer, Interface
 from zope.component import adapts, queryUtility, ComponentLookupError
 from zope.formlib import form
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
+import pytz
+try:
+    from eventlet.green import urllib2
+except ImportError:
+    from eventlet.green.urllib import request as urllib2
 from App.config import getConfiguration
 from OFS.SimpleItem import SimpleItem
 from Products.CMFCore.utils import getToolByName
@@ -28,15 +29,16 @@ from plone.app.contentrules.browser.formhelper import AddForm, EditForm
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from eea.rabbitmq.plone.rabbitmq import get_rabbitmq_client_settings
 from eea.rabbitmq.plone.rabbitmq import queue_msg
-from eea.rdfmarshaller.asyncode import IAsyncService
-from eea.rdfmarshaller.actions.interfaces import IObjectMovedOrRenamedEvent
+from eea.dexterity.rdfmarshaller.asyncode import IAsyncService
+from eea.dexterity.rdfmarshaller.actions.interfaces import \
+    IObjectMovedOrRenamedEvent
 try:
     from eea.versions.interfaces import IGetVersions, IVersionEnhanced
     hasVersionsInstalled = True
 except ImportError:
     hasVersionsInstalled = False
 
-logger = logging.getLogger("eea.rdfmarshaller")
+logger = logging.getLogger("eea.dexterity.rdfmarshaller")
 
 
 class IPingCRAction(Interface):
@@ -56,7 +58,7 @@ class PingCRAction(SimpleItem):
 
     service_to_ping = ''
 
-    element = 'eea.rdfmarshaller.actions.PingCR'
+    element = 'eea.dexterity.rdfmarshaller.actions.PingCR'
 
     summary = u'ping cr'
 
@@ -127,9 +129,8 @@ class PingCRActionExecutor(object):
             if hasattr(obj, 'getBRefs'):
                 back_relations = obj.getBRefs('relatesTo')
             else:
-                back_relations = [o.to_object
-                    for o in getattr(obj, 'relatedItems')
-                ]
+                back_relations = [
+                    o.to_object for o in getattr(obj, 'relatedItems')]
 
             for rel in back_relations:
                 if rel is not None:
@@ -327,7 +328,7 @@ def ping_CRSDS(context, options):
 
             if (not options['create']) and \
                'URL not in catalogue of sources' in message:
-                #Retry ping with create=true
+                # Retry ping with create=true
                 options['create'] = True
                 continue
         except Exception as err:

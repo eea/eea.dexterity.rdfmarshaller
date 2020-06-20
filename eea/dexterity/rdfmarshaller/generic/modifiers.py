@@ -1,7 +1,7 @@
 """ Generic modifiers module
 """
 import rdflib
-from eea.rdfmarshaller.interfaces import ISurfResourceModifier
+from eea.dexterity.rdfmarshaller.interfaces import ISurfResourceModifier
 from OFS.interfaces import IFolder
 from plone.api.portal import get_tool
 from zope.component import adapts
