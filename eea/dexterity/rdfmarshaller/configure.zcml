@@ -12,7 +12,6 @@
   <include package=".licenses" />
   <include package=".generic" />
   <include package=".linkeddata" />
-  <include package=".upgrades" />
 
   <include zcml:condition="installed plone.dexterity" package=".dexterity" />
 
