@@ -1,13 +1,12 @@
 """ Surf conversion classes """
 
-import re
-from chardet import detect
 from DateTime.DateTime import DateTime
-from Products.CMFPlone import log
 from rdflib import URIRef
 from zope.component import adapts
 from zope.interface import implementer, Interface
 from eea.dexterity.rdfmarshaller.interfaces import IValue2Surf
+from plone.app.textfield.value import RichTextValue
+import six
 
 
 @implementer(IValue2Surf)
@@ -21,10 +20,10 @@ class Value2Surf(object):
 
     def __call__(self, *args, **kwds):
         language = kwds['language']
-        if isinstance(self.value, unicode):
+        if isinstance(self.value, six.text_type):
             return (self.value, language)
         try:
-            value = (unicode(self.value, 'utf-8', 'replace'), language)
+            value = (six.text_type(self.value, 'utf-8', 'replace'), language)
         except TypeError:
             value = (str(self.value), language)
         return value
@@ -66,43 +65,12 @@ class Set2Surf(Value2Surf):
         return list(self.value)
 
 
-class String2Surf(Value2Surf):
-    """IValue2Surf implementation for strings
-    """
-    adapts(str)
+class RichValue2Surf(Value2Surf):
+    """ RichTextValue adaptor """
+    adapts(RichTextValue)
 
-    _illegal_xml_chars = re.compile(
-        u'[\x00-\x08\x0b\x0c\x0e-\x1F\uD800-\uDFFF\uFFFE\uFFFF]'
-    )
-
-    def escapeXMLIllegalCharacters(self):
-        """Replaces all the XML illegal characters with spaces
-        """
-        return self._illegal_xml_chars.sub(' ', self.value)
-
-    def __call__(self, *args, **kwds):
-        # Stripped illegal xml characters from string
-        self.value = self.escapeXMLIllegalCharacters()
-
-        if not self.value.strip():
-            return None
-        nonEUencodings = ['Big5', 'GB2312', 'EUC-TW', 'HZ-GB-2312',
-                          'ISO-2022-CN', 'EUC-JP', 'SHIFT_JIS', 'ISO-2022-JP',
-                          'EUC-KR', 'ISO-2022-KR', 'TIS-620', 'ISO-8859-2',
-                          'Windows-1252']
-        language = kwds['language']
-        encoding = detect(self.value)['encoding']
-
-        if encoding in nonEUencodings:
-            value = self.value.decode('utf-8', 'replace')
-        else:
-            try:
-                value = self.value.decode(encoding)
-            except (LookupError, UnicodeDecodeError):
-                log.log("Could not decode to %s in rdfmarshaller" %
-                        encoding)
-                value = self.value.decode('utf-8', 'replace')
-        return (value.encode('utf-8').strip(), language)
+    def __init__(self, value):
+        super(RichValue2Surf, self).__init__(value.output)
 
 
 class DateTime2Surf(Value2Surf):

@@ -1,9 +1,11 @@
 """ testing  """
-try:
-    import plone.dexterity as HAS_DEXTERITY
-except ImportError:
-    HAS_DEXTERITY = False
-from plone.app.testing import (PLONE_FIXTURE, FunctionalTesting,
+import logging
+import sys
+import unittest
+from Products.CMFPlone.log import logger
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE \
+    as PLONE_FIXTURE
+from plone.app.testing import (setRoles, FunctionalTesting, TEST_USER_ID,
                                IntegrationTesting, PloneSandboxLayer)
 
 
@@ -27,26 +29,32 @@ class Fixture(PloneSandboxLayer):
 
         # needed to support RichText in testpage
         self.loadZCML(package=plone.app.textfield)
+        self.loadZCML(package=plone.app.multilingual)
 
         self.loadZCML(package=eea.dexterity.rdfmarshaller)
         self.loadZCML(package=eea.dexterity.rdfmarshaller.licenses,
                       name="licenseviewlet.zcml")
 
-        if HAS_DEXTERITY:
-            from eea.dexterity.rdfmarshaller import dexterity
-            self.loadZCML(package=dexterity)
+        from eea.dexterity.rdfmarshaller import dexterity
+        self.loadZCML(package=dexterity)
 
         self.loadZCML(package=eea.dexterity.rdfmarshaller, name='testing.zcml')
 
     def setUpPloneSite(self, portal):
         """ Set up Plone site """
-        # Install the example.conference product
         self.applyProfile(portal, 'eea.dexterity.rdfmarshaller:default')
-
-        if HAS_DEXTERITY:
-            self.applyProfile(
-                portal,
-                'eea.dexterity.rdfmarshaller:dexterity_testfixture')
+        self.applyProfile(portal, 'plone.app.multilingual:default')
+        self.applyProfile(portal,
+                          'eea.dexterity.rdfmarshaller:dexterity_testfixture')
+        from zope.component import queryUtility
+        from plone.dexterity.interfaces import IDexterityFTI
+        import transaction
+        for factory in ['testpage']:
+            fti = queryUtility(IDexterityFTI, name=factory)
+            behavior_list = [a for a in fti.behaviors]
+            behavior_list.append('plone.translatable')
+            fti.behaviors = tuple(behavior_list)
+        transaction.commit()
 
 
 FIXTURE = Fixture()
@@ -58,3 +66,19 @@ FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
     name='eea.dexterity.rdfmarshaller:Functional',
 )
+
+
+class FunctionalTestCase(unittest.TestCase):
+    """ Functional Test Case """
+
+    layer = FUNCTIONAL_TESTING
+
+    def setUp(self):
+        """ After setup """
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def enableDebugLog(self):
+        """ Enable context.plone_log() output from Python scripts """
+        logger.root.setLevel(logging.WARN)
+        logger.root.addHandler(logging.StreamHandler(sys.stdout))

@@ -9,7 +9,6 @@ EEA Dexterity RDF Marshaller
   :alt: master
 
 Export any Dexterity content to RDF.
-It provides a few general adaptors for ATContentTypes and ATVocabularyManager.
 You can then look in eea.soer to find out how to customize these adaptors
 for your own RDF schemas and own content types.
 

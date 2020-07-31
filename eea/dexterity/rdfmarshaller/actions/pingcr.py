@@ -4,6 +4,7 @@
 import logging
 import urllib
 from datetime import datetime, timedelta
+import six
 import lxml.etree
 from zope import schema
 from zope.interface import implementer, Interface
@@ -242,7 +243,8 @@ class PingCRActionExecutor(object):
         default_url = default_url.replace('https://', 'http://', 1)
 
         if default_url != portal_url:
-            url = url.replace(unicode(portal_url), unicode(default_url))
+            url = url.replace(six.text_type(portal_url),
+                              six.text_type(default_url))
             url = url.replace('SITE/', '')
 
         return url

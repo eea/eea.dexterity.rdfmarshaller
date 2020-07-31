@@ -2,25 +2,31 @@
 """
 import doctest
 import unittest
-from eea.dexterity.rdfmarshaller.tests.base import FunctionalTestCase
+from plone.testing import layered
+from eea.dexterity.rdfmarshaller.testing import FUNCTIONAL_TESTING
+from eea.dexterity.rdfmarshaller.testing import FunctionalTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 
 
-OPTIONFLAGS = (
-    doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE)
+OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
+               doctest.ELLIPSIS |
+               doctest.NORMALIZE_WHITESPACE)
 
 
 def test_suite():
     """ Suite
     """
-
-    return unittest.TestSuite((
-        FunctionalDocFileSuite(
-            'marshall.txt',
-            optionflags=OPTIONFLAGS,
-            package='eea.dexterity.rdfmarshaller',
-            test_class=FunctionalTestCase),
-    ))
+    suite = unittest.TestSuite()
+    suite.addTests([
+        layered(
+            FunctionalDocFileSuite(
+                'marshall.txt',
+                optionflags=OPTIONFLAGS,
+                package='eea.dexterity.rdfmarshaller',
+                test_class=FunctionalTestCase),
+            layer=FUNCTIONAL_TESTING),
+    ])
+    return suite
 
 
 if __name__ == '__main__':

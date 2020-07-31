@@ -181,6 +181,8 @@ class Dexterity2Surf(GenericObject2Surf):
             if not fieldAdapter.exportable:
                 continue
 
+            fieldName = fieldAdapter.name
+
             try:
                 value = fieldAdapter.value()
             except Exception:
@@ -201,8 +203,6 @@ class Dexterity2Surf(GenericObject2Surf):
                 continue
 
             prefix = (fieldAdapter.prefix or self.prefix).replace('.', '')
-
-            fieldName = fieldAdapter.name
 
             if fieldName in self.field_map:
                 fieldName = self.field_map.get(fieldName)

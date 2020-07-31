@@ -2,6 +2,7 @@
 
 import unittest
 
+import six
 import lxml.etree
 
 from eea.dexterity.rdfmarshaller.testing import INTEGRATION_TESTING
@@ -67,7 +68,7 @@ class TestProgramIntegration(unittest.TestCase):
         view = getMultiAdapter((testpage_fti, req), name="rdf")
         rdf = view()
 
-        if isinstance(rdf, unicode):
+        if isinstance(rdf, six.text_type):
             rdf = rdf.encode()
         e = lxml.etree.fromstring(rdf)
         props = e.xpath('//RDFS:Property', namespaces=NSMAP)

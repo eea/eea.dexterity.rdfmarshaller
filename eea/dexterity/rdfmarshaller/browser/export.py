@@ -2,6 +2,7 @@
 """
 import os
 import logging
+import six
 from eea.dexterity.rdfmarshaller.interfaces import ILinkedData
 from eea.dexterity.rdfmarshaller.products_marshall_registry import getComponent
 from unidecode import unidecode
@@ -36,7 +37,7 @@ class RDFExport(object):
         """ Remove
         """
 
-        if not isinstance(text, unicode):
+        if not isinstance(text, six.text_type):
             text = text.decode('utf-8')
 
         # Fast sanitize ASCII text

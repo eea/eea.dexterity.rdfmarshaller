@@ -1,6 +1,6 @@
 """ Viewlets
 """
-import StringIO
+from io import BytesIO
 
 import surf
 from plone import api
@@ -80,7 +80,7 @@ def regraph(store):
     """
 
     ser = store.reader.graph.serialize(format='xml')
-    f = StringIO.StringIO(ser)
+    f = BytesIO(ser)
     graph = ConjunctiveGraph()
     graph.parse(f)
 

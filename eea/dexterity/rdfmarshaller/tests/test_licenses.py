@@ -35,13 +35,14 @@ class TestProgramIntegration(unittest.TestCase):
         licenses_settings = self.portal.unrestrictedTraverse(
             'licenses-settings')
         assert str(type(licenses_settings)) == \
-            "<class 'Products.Five.metaclass.LicensesView'>"
+            "<class 'Products.Five.browser.metaconfigure.LicensesView'>"
 
         # TEST @@portal-type-licenses-settings exists
         portal_type_licenses_settings = self.portal.unrestrictedTraverse(
             'portal-type-licenses-settings')
-        assert str(type(portal_type_licenses_settings)) == \
-            "<class 'Products.Five.metaclass.PortalTypeLicensesView'>"
+        assert str(type(portal_type_licenses_settings)) == (
+            "<class 'Products.Five.browser.metaconfigure."
+            "PortalTypeLicensesView'>")
 
         # TEST registry
         test_licenses = [

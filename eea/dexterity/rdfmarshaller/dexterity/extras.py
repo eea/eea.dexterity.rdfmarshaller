@@ -1,6 +1,7 @@
 """ extras """
 
 import sys
+import six
 
 try:
     from collective.cover.interfaces import ICover
@@ -43,8 +44,8 @@ class CoverTilesModifier(object):
             if text:
                 # convert to unicode
 
-                if not isinstance(text.output, unicode):
-                    value += unicode(text.output, 'utf-8')
+                if not isinstance(text.output, six.text_type):
+                    value += six.text_type(text.output, 'utf-8')
                 else:
                     value += text.output
 

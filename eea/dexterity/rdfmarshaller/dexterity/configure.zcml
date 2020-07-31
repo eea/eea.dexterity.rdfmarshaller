@@ -7,11 +7,13 @@
     provides="eea.dexterity.rdfmarshaller.interfaces.IObject2Surf" />
 
   <adapter factory=".Dexterity2Surf"
-    for="plone.dexterity.interfaces.IDexterityContainer eea.dexterity.rdfmarshaller.interfaces.ISurfSession"
+      for="plone.dexterity.interfaces.IDexterityContainer
+           eea.dexterity.rdfmarshaller.interfaces.ISurfSession"
     provides="eea.dexterity.rdfmarshaller.interfaces.IObject2Surf" />
 
   <adapter factory=".Dexterity2Surf"
-    for="plone.dexterity.content.Container eea.dexterity.rdfmarshaller.interfaces.ISurfSession"
+      for="plone.dexterity.content.Container
+           eea.dexterity.rdfmarshaller.interfaces.ISurfSession"
     provides="eea.dexterity.rdfmarshaller.interfaces.IObject2Surf" />
 
   <!-- rdfs adapters -->
@@ -28,10 +30,9 @@
   <adapter factory=".fields.DXField2Surf"
     provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
   />
-  <adapter factory=".fields.RichValue2Surf"
-    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  <adapter factory=".fields.DXField2Surf"
+    provides="eea.dexterity.rdfmarshaller.dexterity.interfaces.IDXField2Surf"
   />
-
   <configure zcml:condition="installed z3c.relationfield">
     <adapter factory=".fields.DXRelationList2Surf"
       provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
@@ -40,6 +41,12 @@
       provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
     />
   </configure>
+  <adapter factory=".fields.DXFileField2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+  />
+  <adapter factory=".fields.DXFileField2Surf"
+    provides="eea.dexterity.rdfmarshaller.dexterity.interfaces.IDXField2Surf"
+  />
 
   <!-- Specific dexterity @@rdf modifiers -->
 
@@ -50,7 +57,7 @@
     provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.TranslationInfoModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+  provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
 
   <subscriber factory=".modifiers.ProvidedInterfacesModifier"
     provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />

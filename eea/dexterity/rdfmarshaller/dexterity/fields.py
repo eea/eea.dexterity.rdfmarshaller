@@ -12,12 +12,11 @@ from eea.dexterity.rdfmarshaller.interfaces import IFieldDefinition2Surf
 from eea.dexterity.rdfmarshaller.interfaces import ISurfSession
 from eea.dexterity.rdfmarshaller.marshaller import GenericObject2Surf
 from eea.dexterity.rdfmarshaller.value import Value2Surf
-from plone.app.textfield.value import RichTextValue
 from Products.CMFPlone import log
 from zope.component import adapts
 from zope.interface import Interface, implementer
 from zope.schema.interfaces import IField
-
+from plone.namedfile.interfaces import INamedBlobFileField
 try:
     from z3c.relationfield.interfaces import IRelationList
     from z3c.relationfield.interfaces import IRelationValue
@@ -60,14 +59,6 @@ class DXField2Surf(object):
                     severity=log.logging.WARN)
 
             return None
-
-
-class RichValue2Surf(Value2Surf):
-    """ RichTextValue adaptor """
-    adapts(RichTextValue)
-
-    def __init__(self, value):
-        super(RichValue2Surf, self).__init__(value.output)
 
 
 @implementer(IFieldDefinition2Surf)
@@ -148,7 +139,6 @@ class ShortenHTMLField2Surf(DXField2Surf, BaseShortenHTMLField2Surf):
         return getattr(self.context, self.alternate_field).output
 
     def value(self):
-        # import pdb; pdb.set_trace()
         v = DXField2Surf(self.field, self.context, self.session).value()
 
         return v or self.alternate_value()
@@ -175,7 +165,7 @@ if HAS_Z3C_RELATIONFIELD:
                     for ref in value]
 
     class RelationValue2Surf(Value2Surf):
-        """IValue2Surf implementation for DateTime """
+        """IValue2Surf implementation for Relations """
 
         adapts(IRelationValue)
 
@@ -185,3 +175,83 @@ if HAS_Z3C_RELATIONFIELD:
             obj = value.to_object
 
             return rdflib.URIRef(obj.absolute_url())
+
+
+@implementer(IDXField2Surf)
+class DXFileField2Surf(DXField2Surf):
+    """IDXField2Surf implementation for File fields"""
+
+    adapts(INamedBlobFileField, Interface, ISurfSession)
+
+    exportable = True
+
+#    @property
+#    def name(self):
+#        """ return field name """
+#
+#        return self.field.getName()
+
+    def value(self):
+        """ The desired output is similar to:
+        <report:file>
+          <schema:MediaObject rdf:about="
+                http://random-url/publications/emep-eea-guidebook-2016/file">
+            <eea:fileInfo rdf:resource="
+                ttp://random-url/publications/emep-eea-guidebook-2016/
+                file#fileInfo"/>
+          </schema:MediaObject>
+        </report:file>
+
+        For files:
+        <dcat:Distribution rdf:about="
+            http://random-url/publications/emep-eea-guidebook-2016/
+            file#fileInfo">
+          <dcat:downloadURL rdf:resource="
+            http://random-url/publications/emep-eea-guidebook-2016/
+            at_download/file"/>
+          <dcat:sizeInBytes rdf:datatype="
+            http://www.w3.org/2001/XMLSchema#integer">844</dcat:sizeInBytes>
+        </dcat:Distribution>
+
+        For images:
+        <dcat:Distribution rdf:about="
+            http://random-url/articles/alpler/image#fileInfo">
+          <dcat:downloadURL rdf:resource="
+            http://random-url/articles/alpler/at_download/image"/>
+          <dcat:sizeInBytes rdf:datatype="
+            http://www.w3.org/2001/XMLSchema#integer">844</dcat:sizeInBytes>
+        </dcat:Distribution>
+        """
+
+        name = self.field.getName()
+        base_url = self.context.absolute_url()
+        field_url = "{0}/{1}".format(base_url, name)
+        the_file = getattr(self.context, name)
+        if the_file:
+            filename = the_file.filename
+            download_url = '{0}/@@download/{1}/{2}'.format(base_url,
+                                                           name,
+                                                           filename)
+
+            # 22047 check if value isn't a false value, images with no data
+            # will return an empty string
+            # value = self.field.getAccessor(self.context)()
+            size = the_file.getSize()
+
+            # to check if this is OK, see ticket above
+            if size:
+                Distribution = self.session.get_class(
+                    surf.ns.DCAT['Distribution'])
+                dist = Distribution(field_url + "#fileInfo")
+                dist.dcat_sizeInBytes = size
+                dist.dcat_downloadURL = rdflib.URIRef(download_url)
+                dist.update()
+
+                MediaObject = self.session.get_class(
+                    surf.ns.SCHEMA['MediaObject'])
+                ff = MediaObject(field_url)
+                ff.eea_fileInfo = dist
+                ff.update()
+                ff.save()
+
+                return rdflib.URIRef(field_url)
