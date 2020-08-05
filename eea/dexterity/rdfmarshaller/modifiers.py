@@ -8,6 +8,7 @@ from zope.interface import implementer, providedBy
 import rdflib
 from plone.dexterity.interfaces import IDexterityContent
 try:
+    from plone.app.multilingual.interfaces import ITranslatable
     from plone.app.multilingual.interfaces import ITranslationManager
     has_plone_multilingual = True
 except ImportError:
@@ -115,7 +116,7 @@ class TranslationInfoModifier(object):
 
         # ZZZ: should watch for availability of plone.app.multilingual
 
-        if has_plone_multilingual:
+        if has_plone_multilingual and ITranslatable.providedBy(context):
             tm = ITranslationManager(context)
             translations = tm.get_translated_languages()
 
