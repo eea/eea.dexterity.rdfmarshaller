@@ -53,6 +53,10 @@ class IField2Surf(Interface):
         """ Returns the value in format understandable by SURF """
 
 
+class IDXField2Surf(IField2Surf):
+    """ Extract values from Fields, to store them in the surf session """
+
+
 class IValue2Surf(Interface):
     """Transform a python value in a format suitable for Surf
     """

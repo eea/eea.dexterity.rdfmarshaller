@@ -15,7 +15,7 @@ except ImportError:
 from zope.component import adapts
 from zope.interface import implementer
 
-from eea.dexterity.rdfmarshaller.dexterity.modifiers import BaseFileModifier
+from eea.dexterity.rdfmarshaller.modifiers import BaseFileModifier
 from eea.dexterity.rdfmarshaller.interfaces import ISurfResourceModifier
 from plone.app.contenttypes.interfaces import IFile, IImage
 from Products.CMFPlone import log

@@ -35,9 +35,6 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=eea.dexterity.rdfmarshaller.licenses,
                       name="licenseviewlet.zcml")
 
-        from eea.dexterity.rdfmarshaller import dexterity
-        self.loadZCML(package=dexterity)
-
         self.loadZCML(package=eea.dexterity.rdfmarshaller, name='testing.zcml')
 
     def setUpPloneSite(self, portal):

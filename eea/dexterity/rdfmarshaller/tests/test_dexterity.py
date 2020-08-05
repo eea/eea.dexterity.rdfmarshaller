@@ -80,10 +80,8 @@ class TestProgramIntegration(unittest.TestCase):
     def test_shorten_description(self):
         """ Test shorten description field """
 
-        from eea.dexterity.rdfmarshaller.dexterity.fields import \
-            ShortenHTMLField2Surf
-        from eea.dexterity.rdfmarshaller.dexterity.interfaces import \
-            IDXField2Surf
+        from eea.dexterity.rdfmarshaller.fields import ShortenHTMLField2Surf
+        from eea.dexterity.rdfmarshaller.interfaces import IDXField2Surf
         from zope.component import getGlobalSiteManager
         from zope.interface import Interface
 

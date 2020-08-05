@@ -5,7 +5,7 @@ import sys
 import rdflib
 import surf
 from Acquisition import aq_base
-from eea.dexterity.rdfmarshaller.dexterity.interfaces import IDXField2Surf
+from eea.dexterity.rdfmarshaller.interfaces import IDXField2Surf
 from eea.dexterity.rdfmarshaller.generic.fields import \
     BaseShortenHTMLField2Surf
 from eea.dexterity.rdfmarshaller.interfaces import IFieldDefinition2Surf
