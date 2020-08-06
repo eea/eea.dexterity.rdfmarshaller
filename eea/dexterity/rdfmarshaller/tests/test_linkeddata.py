@@ -129,8 +129,8 @@ class TestLinkedDataIntegration(unittest.TestCase):
         view = collection()
         ritem0 = results[0]
         assert ritem0.absolute_url() in view
-        ritem1 = results[1]
         assert 'CarouselListItem1' in view
+        ritem1 = results[1]
         assert ritem1.absolute_url() in view
         assert 'CarouselListItem2' in view
         ritem2 = results[2]

@@ -2,7 +2,7 @@
 
 from DateTime.DateTime import DateTime
 from rdflib import URIRef
-from zope.component import adapts
+from zope.component import adapts, queryAdapter
 from zope.interface import implementer, Interface
 from eea.dexterity.rdfmarshaller.interfaces import IValue2Surf
 from plone.app.textfield.value import RichTextValue
@@ -53,7 +53,13 @@ class List2Surf(Value2Surf):
     adapts(list)
 
     def __call__(self, *args, **kwds):
-        return self.value
+        adapted = []
+        for val in self.value:
+            valueAdapter = queryAdapter(val, IValue2Surf)
+            if valueAdapter:
+                val = valueAdapter(val, language=kwds['language'])
+            adapted.append(val)
+        return adapted
 
 
 class Set2Surf(Value2Surf):

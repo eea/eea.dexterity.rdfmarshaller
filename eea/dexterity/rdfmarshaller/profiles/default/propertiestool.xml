@@ -8,8 +8,6 @@
     <element value="immediatelyAddableTypes" />
     <element value="language" />
     <element value="allowDiscussion" />
-    <element value="file" />
-    <element value="image" />
   </property>
  </object>
 </object>

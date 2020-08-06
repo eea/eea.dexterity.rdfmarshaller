@@ -126,10 +126,9 @@ class Dexterity2Surf(GenericObject2Surf):
         props = getattr(ptool, 'rdfmarshaller_properties', None)
 
         if props:
-            return list(
-                props.getProperty('%s_blacklist' % self.portalType.lower(),
-                                  props.getProperty('blacklist'))
-            )
+            return [prop.decode('utf-8') for prop in
+                    props.getProperty('%s_blacklist' % self.portalType.lower(),
+                                      props.getProperty('blacklist'))]
 
         return self._blacklist
 
