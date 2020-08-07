@@ -48,9 +48,7 @@ setup(name=name,
       ],
       extras_require={
           'test': [
-              'Products.PloneTestCase',
               'plone.app.testing',
-              'eea.depiction',
               'collective.z3cform.datagridfield',
           ]
       },
