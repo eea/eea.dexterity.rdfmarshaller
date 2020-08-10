@@ -37,14 +37,14 @@ setup(name=name,
       install_requires=[
           'setuptools',
           'Unidecode',
-          'surf',
+          'surf>=3.0.b3',
           'rdflib>=4.2.2',
           'chardet',
           'eventlet',
           'rdflib_jsonld>=0.4.0',
           'collective.z3cform.datagridfield',
           'plone.formwidget.contenttree',
-          'eea.rabbitmq.plone',
+          'eea.rabbitmq.plone>=1.2',
       ],
       extras_require={
           'test': [
