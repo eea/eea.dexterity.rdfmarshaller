@@ -49,6 +49,7 @@ setup(name=name,
       extras_require={
           'test': [
               'plone.app.testing',
+              'plone.app.robotframework',
               'collective.z3cform.datagridfield',
           ]
       },
