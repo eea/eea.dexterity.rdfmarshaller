@@ -45,6 +45,7 @@ setup(name=name,
           'collective.z3cform.datagridfield',
           'plone.formwidget.contenttree',
           'eea.rabbitmq.plone>=1.2',
+          'zope.formlib',
       ],
       extras_require={
           'test': [
