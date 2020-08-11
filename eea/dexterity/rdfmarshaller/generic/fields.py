@@ -15,7 +15,6 @@ def shorten(text, sentences=1):
     Returns text (joined sentences)
     """
 
-    # TODO: test for unicode
     sents = S_RE.split(text)
 
     return u' '.join(sents[:sentences]).strip()

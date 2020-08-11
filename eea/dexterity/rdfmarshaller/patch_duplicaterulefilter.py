@@ -3,6 +3,7 @@
 from plone.app.contentrules.handlers import _get_uid
 from zope.container.interfaces import IObjectRemovedEvent
 
+
 def patched___call__(self, context, rule, event):
     """ Workaround: don't add the rule in the list of executed ones,
     because together with plone.app.linkintegrity it causes to don't execute
@@ -15,6 +16,6 @@ def patched___call__(self, context, rule, event):
     else:
         # workaround for ObjectRemovedEvent
         if not IObjectRemovedEvent.providedBy(event):
-        #end of workaround
+            # end of workaround
             self.executed.add((uid, rule.__name__, ))
         return True

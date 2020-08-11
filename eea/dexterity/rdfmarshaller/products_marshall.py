@@ -1,3 +1,4 @@
+''' products marshall '''
 from App.class_init import InitializeClass
 from zope.interface import implementer, Interface
 from AccessControl import ClassSecurityInfo
@@ -42,7 +43,8 @@ class IMarshall(ILayer):
 
 
 @implementer(IMarshall, ILayer)
-class Marshaller:
+class Marshaller(object):
+    """Marshaller."""
 
     security = ClassSecurityInfo()
     security.declareObjectPrivate()
@@ -53,6 +55,12 @@ class Marshaller:
         self.marshall_hook = marshall_hook
 
     def initializeInstance(self, instance, item=None, container=None):
+        """initializeInstance.
+
+        :param instance:
+        :param item:
+        :param container:
+        """
         dm_hook = None
         m_hook = None
         if self.demarshall_hook is not None:
@@ -63,21 +71,49 @@ class Marshaller:
         instance.marshall_hook = m_hook
 
     def cleanupInstance(self, instance, item=None, container=None):
+        """cleanupInstance.
+
+        :param instance:
+        :param item:
+        :param container:
+        """
         if hasattr(aq_base(instance), 'demarshall_hook'):
             delattr(instance, 'demarshall_hook')
         if hasattr(aq_base(instance), 'marshall_hook'):
             delattr(instance, 'marshall_hook')
 
     def demarshall(self, instance, data, **kwargs):
-        raise NotImplemented
+        """demarshall.
+
+        :param instance:
+        :param data:
+        :param kwargs:
+        """
+        raise NotImplementedError
 
     def marshall(self, instance, **kwargs):
-        raise NotImplemented
+        """marshall.
+
+        :param instance:
+        :param kwargs:
+        """
+        raise NotImplementedError
 
     def initializeField(self, instance, field):
+        """initializeField.
+
+        :param instance:
+        :param field:
+        """
         pass
 
     def cleanupField(self, instance, field):
+        """cleanupField.
+
+        :param instance:
+        :param field:
+        """
         pass
+
 
 InitializeClass(Marshaller)
