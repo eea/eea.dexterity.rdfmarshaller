@@ -1,6 +1,7 @@
-================d=
+==============================
 EEA Dexterity RDF Marshaller
-==================
+==============================
+
 .. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/eea.dexterity.rdfmarshaller/develop
   :target: https://ci.eionet.europa.eu/job/eea/job/eea.dexterity.rdfmarshaller/job/develop/display/redirect
   :alt: develop
