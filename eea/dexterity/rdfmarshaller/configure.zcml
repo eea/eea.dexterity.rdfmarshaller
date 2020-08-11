@@ -7,7 +7,6 @@
   <include file="patches.zcml" />
 
   <include package=".actions" />
-  <include package=".asyncode" />
   <include package=".browser" />
   <include package=".licenses" />
   <include package=".generic" />
