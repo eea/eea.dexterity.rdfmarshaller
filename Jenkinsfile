@@ -15,11 +15,9 @@ pipeline {
           "JS Hint": {
             node(label: 'docker') {
               script {
-                try {
-                  sh '''docker run -i --rm --name="$BUILD_TAG-jshint" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/jshint'''
-                } catch (err) {
-                  echo "Unstable: ${err}"
-                }
+              catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                sh '''docker run -i --rm --name="$BUILD_TAG-jshint" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/jshint'''
+                } 
               }
             }
           },
@@ -27,10 +25,8 @@ pipeline {
           "CSS Lint": {
             node(label: 'docker') {
               script {
-                try {
+               catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                   sh '''docker run -i --rm --name="$BUILD_TAG-csslint" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/csslint'''
-                } catch (err) {
-                  echo "Unstable: ${err}"
                 }
               }
             }
@@ -39,11 +35,9 @@ pipeline {
           "PEP8": {
             node(label: 'docker') {
               script {
-                try {
-                  sh '''docker run -i --rm --name="$BUILD_TAG-pep8" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/pep8'''
-                } catch (err) {
-                  echo "Unstable: ${err}"
-                }
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                   sh '''docker run -i --rm --name="$BUILD_TAG-pep8" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/pep8'''
+                } 
               }
             }
           },
@@ -51,10 +45,8 @@ pipeline {
           "PyLint": {
             node(label: 'docker') {
               script {
-                try {
+                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                   sh '''docker run -i --rm --name="$BUILD_TAG-pylint" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/pylint'''
-                } catch (err) {
-                  echo "Unstable: ${err}"
                 }
               }
             }
@@ -106,8 +98,10 @@ pipeline {
           },
 
           "PloneSaaS": {
-            node(label: 'docker') {
+            node(label: 'docker') {           
+              catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh '''docker pull eeacms/plonesaas-devel;docker run -i --rm --name="$BUILD_TAG-plonesaas" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/plonesaas-devel /debug.sh bin/test --test-path /plone/instance/src/$GIT_NAME -v -vv -s $GIT_NAME'''
+              }
             }
           }
         )
