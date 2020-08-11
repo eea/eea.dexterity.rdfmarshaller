@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.1 - (2020-08-11)
+---------------------------
+* Change: Fix jenkinsfile [valentinab25]
+
 12.4-dev0 - (unreleased)
 ---------------------------
 
