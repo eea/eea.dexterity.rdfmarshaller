@@ -100,7 +100,7 @@ class RDFMarshaller(Marshaller):
         return (content_type, len(data), data)
 
 
-implementer(IGenericObject2Surf)
+@implementer(IGenericObject2Surf)
 class GenericObject2Surf(object):  # noqa: E302
     """Generic implementation of IObject2Surf
 
