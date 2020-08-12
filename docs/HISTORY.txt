@@ -1,6 +1,9 @@
 Changelog
 =========
 
+.4-dev0 - (unreleased)
+---------------------------
+
 0.3 - (2020-08-12)
 ---------------------------
 * Change: Update version.txt [valentinab25]
