@@ -20,6 +20,7 @@ class Fixture(PloneSandboxLayer):
         import eea.dexterity.rdfmarshaller
         import plone.dexterity
         import plone.app.textfield
+        import collective.z3cform.datagridfield
 
         # needed for Dexterity FTI
         self.loadZCML(package=plone.dexterity)
@@ -30,6 +31,7 @@ class Fixture(PloneSandboxLayer):
         # needed to support RichText in testpage
         self.loadZCML(package=plone.app.textfield)
         self.loadZCML(package=plone.app.multilingual)
+        self.loadZCML(package=collective.z3cform.datagridfield)
 
         self.loadZCML(package=eea.dexterity.rdfmarshaller)
         self.loadZCML(package=eea.dexterity.rdfmarshaller.licenses,
@@ -39,6 +41,7 @@ class Fixture(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         """ Set up Plone site """
+        self.applyProfile(portal, 'collective.z3cform.datagridfield:default')
         self.applyProfile(portal, 'eea.dexterity.rdfmarshaller:default')
         self.applyProfile(portal, 'plone.app.multilingual:default')
         self.applyProfile(portal,
