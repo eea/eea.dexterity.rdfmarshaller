@@ -21,6 +21,7 @@ class Fixture(PloneSandboxLayer):
         import plone.dexterity
         import plone.app.textfield
         import collective.z3cform.datagridfield
+        import plone.formwidget.contenttree
 
         # needed for Dexterity FTI
         self.loadZCML(package=plone.dexterity)
