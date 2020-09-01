@@ -32,6 +32,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=plone.app.textfield)
         self.loadZCML(package=plone.app.multilingual)
         self.loadZCML(package=collective.z3cform.datagridfield)
+        self.loadZCML(package=plone.formwidget.contenttree)
 
         self.loadZCML(package=eea.dexterity.rdfmarshaller)
         self.loadZCML(package=eea.dexterity.rdfmarshaller.licenses,
@@ -43,6 +44,7 @@ class Fixture(PloneSandboxLayer):
         """ Set up Plone site """
         self.applyProfile(portal, 'collective.z3cform.datagridfield:default')
         self.applyProfile(portal, 'eea.dexterity.rdfmarshaller:default')
+        self.applyProfile(portal, 'plone.formwidget.contenttree:default')
         self.applyProfile(portal, 'plone.app.multilingual:default')
         self.applyProfile(portal,
                           'eea.dexterity.rdfmarshaller:dexterity_testfixture')
