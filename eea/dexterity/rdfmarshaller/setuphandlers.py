@@ -2,6 +2,8 @@
 """
 import logging
 from Products.CMFCore.utils import getToolByName
+from zope.interface import alsoProvides
+from eea.dexterity.rdfmarshaller.interfaces import ILinkedDataHomepage
 
 
 def setupVarious(context):
@@ -16,5 +18,8 @@ def setupVarious(context):
     logger.info("Installing Products.Marshall")
 
     site = context.getSite()
+    alsoProvides(site, ILinkedDataHomepage)
+    site._p_changed = True
+    site.reindexObject(idxs=['object_provides'])
     qinstaller = getToolByName(site, 'portal_quickinstaller')
     qinstaller.installProduct('Marshall')

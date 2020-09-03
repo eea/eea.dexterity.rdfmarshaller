@@ -6,12 +6,6 @@
   <adapter factory=".GenericLinkedData" />
   <adapter factory=".HomepageLinkedData" />
 
-  <class class="Products.CMFPlone.Portal.PloneSite"
-         zcml:condition="installed Products.CMFPlone">
-    <implements
-      interface="eea.dexterity.rdfmarshaller.interfaces.ILinkedDataHomepage" />
-  </class>
-
   <browser:viewlet
     name="linked-data-export"
     class=".viewlets.LinkedDataExportViewlet"
