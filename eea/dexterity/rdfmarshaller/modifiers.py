@@ -168,13 +168,12 @@ class SearchableTextInModifier(object):
         """ Change the rdf resource
         """
         default_page = getattr(self.context, 'default_page', None)
+        abstract = self.context.SearchableText()
         if default_page:
             ob_as_view = getattr(self.context.aq_base, default_page, None)
             if ob_as_view:
                 abstract = self.context.title + ' ' + \
                     ob_as_view.SearchableText()
-        else:
-            abstract = self.context.SearchableText()
         abstract = ILLEGAL_XML_CHARS_PATTERN.sub('', abstract)
         resource.dcterms_abstract = abstract
 
