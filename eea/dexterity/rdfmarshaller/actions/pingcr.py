@@ -254,6 +254,7 @@ class PingCRAddForm(AddForm):
     """ Ping action addform
     """
     form_fields = form.FormFields(IPingCRAction)
+    schema = IPingCRAction
     label = u"Add Ping CR Action"
     description = u"A ping CR action."
     form_name = u"Configure element"
@@ -270,6 +271,7 @@ class PingCREditForm(EditForm):
     """ Ping action editform
     """
     form_fields = form.FormFields(IPingCRAction)
+    schema = IPingCRAction
     label = u"Edit Ping CR Action"
     description = u"A ping cr action."
     form_name = u"Configure element"
