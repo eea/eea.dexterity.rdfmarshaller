@@ -11,6 +11,7 @@
   <include package=".licenses" />
   <include package=".generic" />
   <include package=".linkeddata" />
+  <include package="eea.rabbitmq.plone" />
 
   <class class="surf.Session">
      <implements interface=".interfaces.ISurfSession" />

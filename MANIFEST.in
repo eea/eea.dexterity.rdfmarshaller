@@ -1,7 +1,8 @@
 include *.md *.rst *.txt
 graft docs
 graft eea
-global-exclude *pyc
+global-exclude *py[co]
 global-exclude *~
 global-exclude *.un~
 global-include *.mo
+global-exclude __pycache__
