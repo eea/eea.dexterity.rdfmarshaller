@@ -103,11 +103,8 @@ class Dexterity2Surf(GenericObject2Surf):
                    ('creation_date', 'created'),
                    ('modification_date', 'modified'),
                    ('creators', 'creator'),
-                   ('subject', 'subject'),
-                   # ('effectiveDate', 'issued'),
-                   # ('expirationDate', 'expires'),
+                   ('subjects', 'subject'),
                    ('rights', 'rights'),
-                   # ('contributors', 'contributor'),
                    ('effective', 'issued'),
                    ('expires', 'expires'),
                    ('id', 'productID')])
@@ -116,7 +113,7 @@ class Dexterity2Surf(GenericObject2Surf):
                   'locallyAllowedTypes',
                   'immediatelyAddableTypes',
                   'language',
-                  'allowDiscussion']
+                  'allow_discussion']
     field_map = {}
 
     @property
@@ -228,6 +225,9 @@ class Dexterity2Surf(GenericObject2Surf):
                     severity=log.logging.WARN
                 )
 
+        creation_date = queryAdapter(self.context.creation_date,
+                                     interface=IValue2Surf)(language=language)
+        setattr(resource, 'dc_terms_created', creation_date)
         return resource
 
 
