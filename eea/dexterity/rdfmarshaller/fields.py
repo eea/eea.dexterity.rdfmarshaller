@@ -15,7 +15,7 @@ from eea.dexterity.rdfmarshaller.value import Value2Surf
 from Products.CMFPlone import log
 from zope.component import adapts
 from zope.interface import Interface, implementer
-from zope.schema.interfaces import IField
+from zope.schema.interfaces import IField, ITuple
 from plone.namedfile.interfaces import INamedBlobFileField
 try:
     from z3c.relationfield.interfaces import IRelationList
@@ -255,3 +255,29 @@ class DXFileField2Surf(DXField2Surf):
                 ff.save()
 
                 return rdflib.URIRef(field_url)
+
+
+@implementer(IDXField2Surf)
+class DXSubjectsField2Surf(DXField2Surf):
+    """IDXField2Surf implementation for Categories fields"""
+
+    adapts(ITuple, Interface, ISurfSession)
+
+    exportable = True
+
+    def value(self):
+        """ Value """
+        value = getattr(aq_base(self.context), 'subject', None)
+        try:
+            if callable(value):
+                value = value()
+
+            return value
+        except Exception:
+            log.log('RDF marshaller error for context[field]'
+                    '"%s[%s]": \n%s: %s' %
+                    (self.context.absolute_url(), self.name,
+                     sys.exc_info()[0], sys.exc_info()[1]),
+                    severity=log.logging.WARN)
+
+            return None

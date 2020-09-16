@@ -19,14 +19,16 @@ class Value2Surf(object):
         self.value = value
 
     def __call__(self, *args, **kwds):
-        language = kwds['language']
-        if isinstance(self.value, six.text_type):
-            return (self.value, language)
-        try:
-            value = (six.text_type(self.value, 'utf-8', 'replace'), language)
-        except TypeError:
-            value = (str(self.value), language)
-        return value
+        if self.value:
+            language = kwds['language']
+            if isinstance(self.value, six.text_type):
+                return (self.value, language)
+            try:
+                value = (six.text_type(self.value, 'utf-8', 'replace'),
+                         language)
+            except TypeError:
+                value = (str(self.value), language)
+            return value
 
 
 class URIRef2Surf(Value2Surf):

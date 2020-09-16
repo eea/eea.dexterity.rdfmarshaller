@@ -111,6 +111,14 @@
   <adapter factory=".fields.DXFileField2Surf"
     provides="eea.dexterity.rdfmarshaller.interfaces.IDXField2Surf"
   />
+  <adapter factory=".fields.DXSubjectsField2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IFieldDefinition2Surf"
+    name="subjects"
+  />
+  <adapter factory=".fields.DXSubjectsField2Surf"
+    provides="eea.dexterity.rdfmarshaller.interfaces.IDXField2Surf"
+    name="subjects"
+  />
 
   <!-- Specific dexterity @@rdf modifiers -->
 
