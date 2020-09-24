@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6-dev0 - (unreleased)
+0.6 - (2020-09-24)
 ---------------------------
 * Change: removed the replacement of https with http
   [alecghica refs #114849]
