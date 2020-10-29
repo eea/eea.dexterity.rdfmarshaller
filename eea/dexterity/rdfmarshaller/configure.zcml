@@ -120,38 +120,6 @@
     name="subjects"
   />
 
-  <!-- Specific dexterity @@rdf modifiers -->
-
-  <subscriber factory=".modifiers.WorkflowStateModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber factory=".modifiers.IsPartOfModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber factory=".modifiers.TranslationInfoModifier"
-  provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber factory=".modifiers.ProvidedInterfacesModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber factory=".modifiers.SearchableTextInModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber factory=".modifiers.RelatedItemsModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <subscriber zcml:condition="installed collective.cover"
-    factory=".extras.CoverTilesModifier"
-    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-  <configure zcml:condition="installed plone.app.contenttypes">
-    <subscriber
-      factory=".extras.ImageModifier"
-      provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-
-    <subscriber
-      factory=".extras.FileModifier"
-      provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
-  </configure>
+  <include file="modifiers.zcml" />
 
 </configure>

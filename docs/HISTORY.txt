@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.6 - (unreleased)
+------------------
+* Change: move some registrations to modifiers.zcml
+  [tiberiuichim]
+
 0.5 - (2020-09-16)
 ---------------------------
 * Change: Develop
