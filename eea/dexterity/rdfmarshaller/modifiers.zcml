@@ -1,0 +1,40 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <!-- Specific dexterity @@rdf modifiers -->
+
+  <subscriber factory=".modifiers.WorkflowStateModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber factory=".modifiers.IsPartOfModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber factory=".modifiers.TranslationInfoModifier"
+  provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber factory=".modifiers.ProvidedInterfacesModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber factory=".modifiers.SearchableTextInModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber factory=".modifiers.RelatedItemsModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <subscriber zcml:condition="installed collective.cover"
+    factory=".extras.CoverTilesModifier"
+    provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+  <configure zcml:condition="installed plone.app.contenttypes">
+    <subscriber
+      factory=".extras.ImageModifier"
+      provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+
+    <subscriber
+      factory=".extras.FileModifier"
+      provides="eea.dexterity.rdfmarshaller.interfaces.ISurfResourceModifier" />
+  </configure>
+
+</configure>
