@@ -3,7 +3,7 @@ Changelog
 
 0.6 - (2020-09-24)
 ---------------------------
-* Change: removed the replacement of https with http
+* Change: cosmetics
   [alecghica refs #114849]
 
 0.5 - (2020-09-16)
